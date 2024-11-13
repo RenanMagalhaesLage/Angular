@@ -1,0 +1,15 @@
+<header class="main-header">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+      <a class="navbar-brand" [routerLink]="['/']"><b>Meat App</b></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <div class="navbar-nav mr-auto">
+          <a routerLinkActive="active" class="nav-link" [routerLink]="['/restaurants']">Restaurantes</a>
+          <a routerLinkActive="active" class="nav-link" [routerLink]="['/about']">Sobre</a>
+        </div>
+      </div>
+    </nav>
+  </header>

@@ -1,0 +1,33 @@
+ng new jedi-academy --prefix=jad
+      (nome da pasta)     (sigla da pasta)
+      OU 
+ng new my-app --no-standalone --routing --ssr=false --> resolve problema dp app.module.ts --> criar projeto
+
+ng serve --> inicia o servidor ou pode usar npm start
+
+ng g c header --skip-tests=true --> cria um componente
+
+DIRETIVAS:
+[ngStyle] = "{'font-size: 40px'}" --> aplicar estilo inline
+[ngClass] --> aplicar classes
+
+ng if -->rendeniza um conteudo caso a expressão seja verdadeira
+ng for --> laço de repetição --> pode se usar tb ngSwitch
+
+biblioteca json server:
+-- npm instal -g json server
+-- json-server db.json --> iniciar backend meat-app
+
+COMPARTILHAMENTO DE DADOS:
+<meuComponent [nomeFilho] = "nomePai">
+
+EMITINDO EVENTOS:
+@Output
+
+PIPE OPERATORS
+{{ dado | uppercase }}
+
+Iniciar dados:Colocar vazio ou colocar !(indica q vai ser inicializado)
+
+
+Projeto Moments - backend --> node ace serve

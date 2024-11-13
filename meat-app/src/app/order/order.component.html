@@ -1,0 +1,132 @@
+<section class="content-header">
+</section>
+
+<section class="content">
+  <section class="invoice">
+        <form [formGroup]="orderForm" novalidate >
+          <div class="row mb-5">
+            <div class="col-xs-12">
+              <h2 class="page-header">
+                <i class="fa fa-shopping-cart pt-5"></i> Finalize o seu pedido
+              </h2>
+            </div>
+          </div>           
+          
+          <div class="row mb-4">
+            <div class="col-xs-12 col-sm-9">
+              <p class="lead">Seus Dados:</p>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+              <span class="form-text has-error-block pull-right text-danger" *ngIf="orderForm.hasError('emailsNotMatch')"><i class="fa fa-remove"></i> E-mails não conferem!</span>
+
+            </div>
+            <div class="col-sm-4 col-xs-12">
+              <app-input-container errorMessage="Campo Obrigatório!" label="Nome">
+                <input 
+                  placeholder="Nome"
+                  formControlName="name"
+                  class="form-control" 
+                  autocomplete="off"
+                  [class.is-valid]="orderForm.get('name')?.valid && (orderForm.get('name')?.dirty || orderForm.get('name')?.touched)" 
+                  [class.is-invalid]="!orderForm.get('name')?.valid && (orderForm.get('name')?.dirty || orderForm.get('name')?.touched)"
+                >
+              </app-input-container>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+              <app-input-container errorMessage="Campo Obrigatório!" label="E-mail">
+                <input 
+                  placeholder="E-mail"
+                  formControlName="email"
+                  class="form-control" 
+                  autocomplete="off"
+                  [class.is-valid]="orderForm.get('email')?.valid && (orderForm.get('email')?.dirty || orderForm.get('email')?.touched)" 
+                  [class.is-invalid]="!orderForm.get('email')?.valid && (orderForm.get('email')?.dirty || orderForm.get('email')?.touched)"
+                >
+              </app-input-container>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+              <app-input-container errorMessage="Campo Obrigatório!" label="E-mail">
+                <input 
+                  placeholder="Confirmação E-mail"
+                  formControlName="emailConfirmation"
+                  class="form-control" 
+                  [class.is-valid]="orderForm.get('emailConfirmation')?.valid && (orderForm.get('emailConfirmation')?.dirty || orderForm.get('emailConfirmation')?.touched)" 
+                  [class.is-invalid]="!orderForm.get('emailConfirmation')?.valid && (orderForm.get('emailConfirmation')?.dirty || orderForm.get('emailConfirmation')?.touched)"
+                >
+              </app-input-container>
+            </div>
+          </div>
+
+          <div class="row mb-4">
+            <div class="col-xs-12">
+              <p class="lead">Endereço de Entrega:</p>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+              <app-input-container errorMessage="Campo Obrigatório!" label="Endereço">
+                <input 
+                  placeholder="Endereço"
+                  formControlName="address"
+                  class="form-control" 
+                  autocomplete="off"
+                  [class.is-valid]="orderForm.get('address')?.valid && (orderForm.get('address')?.dirty || orderForm.get('address')?.touched)" 
+                  [class.is-invalid]="!orderForm.get('address')?.valid && (orderForm.get('address')?.dirty || orderForm.get('address')?.touched)"
+                >
+              </app-input-container>
+            </div>
+            <div class="col-sm-2 col-xs-6">
+              <app-input-container errorMessage="Campo Obrigatório!" label="Número">
+                <input 
+                  placeholder="Número"
+                  formControlName="number"
+                  class="form-control" 
+                  autocomplete="off"
+                  [class.is-valid]="orderForm.get('number')?.valid && (orderForm.get('number')?.dirty || orderForm.get('number')?.touched)" 
+                  [class.is-invalid]="!orderForm.get('number')?.valid && (orderForm.get('number')?.dirty || orderForm.get('number')?.touched)"
+                >
+              </app-input-container>
+            </div>
+            <div class="col-sm-4 col-xs-6">
+              <div class="form-group">
+                <label class="control-label sr-only" for="inputSuccess"><i class="fa fa-check"></i> Complemento</label>
+                <input type="text" class="form-control" formControlName="optionalAddress" id="inputSuccess" placeholder="Complemento">              </div>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <p class="lead">Itens do Pedido:</p>
+            </div>
+              <app-order-items 
+                [items]="cartItems()" 
+                (increaseQty)="increaseQty($event)"
+                (decreaseQty)="decreaseQty($event)"
+                (remove)="remove($event)">
+            </app-order-items>
+          </div>
+          <div class="row">           
+            <div class="col-sm-6 col-12">
+                <p class="lead">Formas de Pagamento:</p>
+                <div class="form-group">
+                  <app-radio [options]="paymentOptions" formControlName="paymentOption" nameformControlName="paymentOption" ></app-radio>
+                </div>
+              </div>
+            <div class="col-sm-6 col-xs-12">
+              <p class="lead">Frete e Total:</p>
+
+              <app-delivery-costs [delivery]="delivery" [itemsValue]="itemsValue()"></app-delivery-costs>
+            </div>
+          </div>
+
+        </form>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <button class="btn btn-success pull-right" [disabled]="!orderForm.valid || cartItems().length === 0" (click)="checkOrder(orderForm.value)">
+              <i class="fa fa-credit-card"></i>
+              Concluir Pedido
+            </button>
+          </div>
+        </div>
+
+    </section>
+</section>

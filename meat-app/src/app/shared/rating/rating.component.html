@@ -1,0 +1,7 @@
+<i *ngFor="let r of rates" class="bi "
+[ngClass]="{'bi-star-fill text-warning': r <= rate, 'bi-star': r > rate}"
+(click)="setRate(r)"
+(mouseenter)="setTemporaryRate(r)"
+(mouseleave)="clearTemporaryRate()"
+>
+</i>

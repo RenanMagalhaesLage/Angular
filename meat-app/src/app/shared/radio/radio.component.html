@@ -1,0 +1,11 @@
+<div *ngFor="let option of options">
+    <label>
+      <input type="radio"
+      (click)="setValue(option.value)"
+      [checked]="option.value === value"
+      (change)="setValue(option.value)"
+      class="form-check-input"
+      />
+      {{option.label}}
+    </label>
+</div>

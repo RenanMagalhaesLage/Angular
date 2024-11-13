@@ -1,0 +1,11 @@
+<div class="card mb-3 card-custom-width" [@menuItemAppeared]="menuItemState">
+    <div class="d-flex" *ngIf="menuItem">
+      <img [src]="menuItem.imagePath" class="card-img-custom" alt="{{menuItem.name}}">
+      <div class="card-body">
+        <h5 class="card-title">{{menuItem.name}}</h5>
+        <p class="card-text">{{menuItem.description}}</p>
+        <p class="card-text"><strong>{{menuItem.price | currency: 'BRL': true}}</strong></p>
+        <a (click)="emitAddEvent()" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Adicionar</a>
+      </div>
+    </div>
+</div>
